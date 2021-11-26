@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector, psycopg2    
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
 
@@ -10,7 +10,8 @@ class Post(BaseModel):
     published: bool = True
 
 try:
-    conn = mysql.connector.connect(user='root', password='jayshah', host='127.0.0.1', database='python_api')
+    # conn = mysql.connector.connect(user='root', password='jayshah', host='127.0.0.1', database='python_api')
+    conn = psycopg2.connect(user='postgres', password='jayshah', host='127.0.0.1', database='python_api')
     cursor = conn.cursor()
     print("Database connection successful")
 except mysql.connector.Error as err:
